@@ -9,6 +9,8 @@ io.stdout:setvbuf("no")
 local image = {}
 local frame = 1
 local animations = {}
+local x = 10
+local reverse = 1
 
 local animStates = {
     run = 1,
@@ -66,13 +68,25 @@ end
 
 function love.update(dt)
     UpdateAnimation(dt)
+    if love.keyboard.isDown("d") then
+        reverse = 1
+        x = x + dt * 40
+        changeAnimation(animStates.run)
+    elseif love.keyboard.isDown("q") then
+        reverse = -1
+        x = x + dt * -40
+        changeAnimation(animStates.run)
+    else
+        changeAnimation(animStates.stand)
+    end
 end
 
 function love.draw()
     love.graphics.scale(3, 3)
-    love.graphics.draw(image[math.floor(frame)], 20, 50)
-    love.graphics.print("frame : " .. tostring(math.floor(frame)), 20, 30)
+    love.graphics.draw(image[math.floor(frame)], x, 50, 0, reverse, 1)
+    love.graphics.print("frame : " .. tostring(math.floor(frame)), x, 30)
 end
 
 function love.keypressed(key)
+    print(key)
 end
