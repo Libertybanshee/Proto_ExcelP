@@ -83,8 +83,8 @@ end
 
 function love.draw()
     love.graphics.scale(3, 3)
-    love.graphics.draw(image[math.floor(frame)], x, 50, 0, reverse, 1)
-    love.graphics.print("frame : " .. tostring(math.floor(frame)), x, 30)
+    love.graphics.draw(image[math.floor(frame)], x, 50, 0, reverse, 1, image[math.floor(frame)]:getWidth() / 2, image[math.floor(frame)]:getHeight() / 2)
+    love.graphics.print("frame : " .. tostring(math.floor(frame)), x - 20, 15)
 end
 
 function love.keypressed(key)
